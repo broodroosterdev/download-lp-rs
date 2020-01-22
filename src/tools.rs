@@ -1,11 +1,7 @@
 pub fn split_name_and_extension<'a>(file : &'a str) -> (&'a str,&'a str) {
     //! splits a url into the filename and the path, all references
 
-    let extension : &'a str = if let Some (ext) = file.split(".").last() { 
-        ext 
-    } else { 
-            "" 
-    };
+    let extension : &'a str = "";
 
     let filename : &'a str = if let Some (filename) = file.split("/").last() { 
         if let Some(filename) = filename.split("\\").last() {
