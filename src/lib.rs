@@ -20,7 +20,7 @@ pub fn download<P:AsRef<Path>>(link : &str, path : P) -> Result<(String,usize),E
     //! Uses [log](https://crates.io/crates/log) so some output is available for 
     //! debugging purposes. 
 
-    info!("Downloading '{}' to path '{}'",link,path);
+    println!("Downloading '{}' to path '{}'",link,path);
 
     let (file,ext) = tools::split_name_and_extension(link);
 
@@ -29,13 +29,13 @@ pub fn download<P:AsRef<Path>>(link : &str, path : P) -> Result<(String,usize),E
     if !download_path.exists() {
         warn!("Download path of '{:?}' doesn't exist, attempting to create it.",&download_path);
         fs::create_dir_all(&download_path)?;
-        info!("Folders created successfully");
+        println!("Folders created successfully");
     }
 
     download_path.push(format!("{}.{}",file,ext));
 
     if download_path.exists() {
-        info!("File already seems to exist, skipping download.");
+        println!("File already seems to exist, skipping download.");
         return Ok((format!("{}.{}",file,ext),0));
     }
 
